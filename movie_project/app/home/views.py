@@ -4,7 +4,7 @@
 __author__ = 'Henry'
 
 from . import home
-from flask import render_template, url_for, redirect, flash, session, request
+from flask import render_template, url_for, redirect, flash, session, request, jsonify
 from app.home.forms import RegistForm, LoginForm, UserdetailForm, PwdForm,CommentForm
 from app.models import User, Userlog, Comment, Movie,Preview,Tag,Moviecol
 from app import db, app
@@ -329,8 +329,7 @@ def moviecol_add():
         db.session.add(moviecol)
         db.session.commit()
         data = dict(ok=1)
-    import json
-    return json.dumps(data) #浏览器返回一个json:{"ok": 1}
+    return jsonify(data) #浏览器返回一个json:{"ok": 1}
     # return json.dumps(dict(ok=1))
 
 
